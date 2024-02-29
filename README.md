@@ -1,9 +1,5 @@
 #  Miro Clone With Nextjs, React
-
-
-This is a repository for a Build a Real-Time Miro Clone With Nextjs, React, Tailwind (2024) youtube video.
-
-[VIDEO TUTORIAL](https://youtu.be/ADJKbuayubE)
+Learning from [VIDEO TUTORIAL](https://youtu.be/ADJKbuayubE)
 
 Features:
 
