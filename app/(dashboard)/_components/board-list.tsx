@@ -1,11 +1,12 @@
 'use client'
 
-import { useQuery } from 'convex/react'
-import EmptyBoards from './_components/empty-boards'
-import EmptyFavorites from './_components/empty-favorites'
-import EmptySearch from './_components/empty-search'
 import { api } from '@/convex/_generated/api'
-import BoardCard from './_components/board-card'
+import { useQuery } from 'convex/react'
+
+import EmptyBoards from './empty-boards'
+import EmptyFavorites from './empty-favorites'
+import EmptySearch from './empty-search'
+import BoardCard from './board-card'
 import NewBoardButton from './new-board-button'
 
 interface BoardListProps {
@@ -15,10 +16,11 @@ interface BoardListProps {
 		favorites?: string
 	}
 }
-
+// 接收params参数 根据params参数的变化动态展示内容
 const BoardList = ({ orgId, query }: BoardListProps) => {
 	const data = useQuery(api.boards.get, { orgId, ...query })
 
+	// 配置过渡效果
 	if (!data) {
 		return (
 			<div>
@@ -45,6 +47,7 @@ const BoardList = ({ orgId, query }: BoardListProps) => {
 	if (!data?.length) {
 		return <EmptyBoards />
 	}
+
 	return (
 		<div>
 			<h2 className='text-3xl'>

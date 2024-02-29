@@ -1,19 +1,21 @@
 'use client'
 
 import { useOrganizationList } from '@clerk/nextjs'
+
 import Item from './item'
 
 // 组织展示列表组件
 const List = () => {
 	// 调用API  useOrganizationList 获取组织数据
 	const { userMemberships } = useOrganizationList({
-		userMemberships: {
-			infinite: true,
-		},
-	})
+    userMemberships: {
+      infinite: true,
+			keepPreviousData: true,
+    },
+  });
 
 	if (!userMemberships.data?.length) return null
-
+	
 	return (
 		<ul className='space-y-4'>
 			{userMemberships.data?.map((mem) => (

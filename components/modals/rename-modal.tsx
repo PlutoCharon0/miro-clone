@@ -1,6 +1,13 @@
 'use client'
 
+import { api } from '@/convex/_generated/api'
+import { toast } from 'sonner'
+import { useApiMutation } from '@/hooks/use-api-mutation'
 import { useRenameModal } from '@/store/use-rename-moadl'
+import { FormEventHandler, useEffect, useState } from 'react'
+
+import { Input } from '@/components/ui/input'
+import { Button } from '@/components/ui/button'
 import {
 	Dialog,
 	DialogHeader,
@@ -10,12 +17,7 @@ import {
 	DialogFooter,
 	DialogClose,
 } from '@/components/ui/dialog'
-import { FormEventHandler, useEffect, useState } from 'react'
-import { useApiMutation } from '@/hooks/use-api-mutation'
-import { toast } from 'sonner'
-import { api } from '@/convex/_generated/api'
-import { Input } from '@/components/ui/input'
-import { Button } from '@/components/ui/button'
+
 
 const RenameModal = () => {
 	const { isOpen, onClose, initialValues } = useRenameModal()
@@ -40,7 +42,6 @@ const RenameModal = () => {
 			})
 			.catch(() => toast.error('Failed to rename the board'))
 	}
-	console.log('rename-modal render')
 
 	return (
 		<Dialog open={isOpen} onOpenChange={onClose}>

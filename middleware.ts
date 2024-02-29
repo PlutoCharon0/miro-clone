@@ -1,10 +1,12 @@
+// 在缓存内容和路由匹配之前运行
 import { authMiddleware } from "@clerk/nextjs";
 
-// This example protects all routes including api/trpc routes
-// Please edit this to allow other routes to be public as needed.
-// See https://clerk.com/docs/references/nextjs/auth-middleware for more information about configuring your Middleware
+// publicRoutes 配置未登录时依旧允许访问的页面路由
+// ignoredRoutes 配置忽略身份验证的页面路由
 export default authMiddleware({});
 
+
 export const config = {
+  // 配置使用身份验证的路由匹配规则
   matcher: ["/((?!.+\\.[\\w]+$|_next).*)", "/", "/(api|trpc)(.*)"],
 };

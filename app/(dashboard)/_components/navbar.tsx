@@ -1,15 +1,17 @@
 'use client'
 
+import SearchInput from './search-input'
+import InviteButton from './invite-button'
 import {
 	OrganizationSwitcher,
 	UserButton,
 	useOrganization,
 } from '@clerk/nextjs'
-import SearchInput from './search-input'
-import InviteButton from './invite-button'
+
 
 // 顶部导航栏组件
 const Navbar = () => {
+	// 获取当前用户所处组织的信息数据
 	const { organization } = useOrganization()
 	return (
 		<div className='flex items-center gap-x-4 p-5'>

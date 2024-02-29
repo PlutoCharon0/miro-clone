@@ -10,22 +10,24 @@ interface CursorProps {
 }
 
 const Cursor = memo(({ connectionId }: CursorProps) => {
+	// 获取与当前id关联的用户信息数据 并订阅该数据的所有更改 （useOther）
 	const info = useOther(connectionId, (user) => user?.info)
 	const cursor = useOther(connectionId, (user) => user.presence.cursor)
 
 	const name = info?.name || 'Teammate'
 
 	if (!cursor) {
-		console.log('unRender')
+		console.log('unRender Cursor')
 		return null
 	}
 
 	const { x, y } = cursor
 
 	return (
+		// foreignObject 用于在svg元素内部放置自定义元素
 		<foreignObject
 			style={{
-				transform: `translateX(${x}px) translateY(${y}px)`,
+				transform: `translateX(${x}px) translateY(${y}px)`, // 将其定位在实时光标坐标上
 			}}
 			height={50}
 			width={name.length * 10 + 24}

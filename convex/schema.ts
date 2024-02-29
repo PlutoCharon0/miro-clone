@@ -1,5 +1,6 @@
 import { defineSchema, defineTable } from 'convex/server'
 import { v } from 'convex/values'
+// v 用于定义数据类型
 // https://docs.convex.dev/database
 
 // 创建数据表结构

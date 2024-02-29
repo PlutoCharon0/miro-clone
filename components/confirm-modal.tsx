@@ -1,4 +1,9 @@
 'use client'
+
+import {
+	AlertDialogTitle,
+	AlertDialogTrigger,
+} from '@radix-ui/react-alert-dialog'
 import {
 	AlertDialog,
 	AlertDialogAction,
@@ -8,10 +13,6 @@ import {
 	AlertDialogFooter,
 	AlertDialogHeader,
 } from '@/components/ui/alert-dialog'
-import {
-	AlertDialogTitle,
-	AlertDialogTrigger,
-} from '@radix-ui/react-alert-dialog'
 
 interface ConfirmModalProps {
 	children: React.ReactNode

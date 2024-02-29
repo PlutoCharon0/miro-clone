@@ -1,13 +1,15 @@
 'use client'
 
-import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
-import { OrganizationSwitcher } from '@clerk/nextjs'
-import { LayoutDashboard, Star } from 'lucide-react'
 import { Poppins } from 'next/font/google'
+import { useSearchParams } from 'next/navigation'
+
 import Image from 'next/image'
 import Link from 'next/link'
-import { useSearchParams } from 'next/navigation'
+import { Button } from '@/components/ui/button'
+import { OrganizationSwitcher } from '@clerk/nextjs'
+import { LayoutDashboard, Star } from 'lucide-react'
+
 
 const font = Poppins({
 	weight: '600',

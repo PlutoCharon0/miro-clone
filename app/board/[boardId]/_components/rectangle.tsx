@@ -13,7 +13,9 @@ const Rectangle = ({
 	onPointerDown,
 	selectionColor,
 }: RectangleProps) => {
+// 从图层对象身上解构数据
 	const { x, y, width, height, fill } = layer
+	
 	return (
 		<rect
 			className='drop-shadow-md'

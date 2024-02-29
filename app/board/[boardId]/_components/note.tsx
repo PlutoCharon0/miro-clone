@@ -1,36 +1,32 @@
-import { cn, colorToCss } from '@/lib/utils'
-import { useMutation } from '@/liveblocks.config'
-import { TextLayer } from '@/types/canvas'
 import { Kalam } from 'next/font/google'
-import { useState } from 'react'
-
 import ContentEditable, { ContentEditableEvent } from 'react-contenteditable'
+
+import { NoteLayer } from '@/types/canvas'
+import { cn, colorToCss, getContrastingTextColor } from '@/lib/utils'
+import { useMutation } from '@/liveblocks.config'
+import { useState } from 'react'
 
 const font = Kalam({
 	subsets: ['latin'],
-	weight: '400',
+	weight: ['400'],
 })
 
-interface TextProps {
-	id: string
-	layer: TextLayer
-	onPointerDown: (e: React.PointerEvent, id: string) => void
-	selectionColor: string
-}
-
-// 计算文本大小 自适应文本框架的放缩
 const calculateFontSize = (width: number, height: number) => {
-	// 允许最大字体大小
 	const maxFontSize = 96
-	// 字体放缩因子 用于根据容器尺寸调整字体大小
-	const scaleFactor = 0.5
-	const fontSizeBasedOnWidth = width * scaleFactor
+	const scaleFactor = 0.15
 	const fontSizeBasedOnHeight = height * scaleFactor
+	const fontSizeBasedOnWidth = width * scaleFactor
 
-	return Math.min(fontSizeBasedOnWidth, fontSizeBasedOnHeight, maxFontSize)
+	return Math.min(fontSizeBasedOnHeight, fontSizeBasedOnWidth, maxFontSize)
 }
 
-const Text = ({ id, layer, onPointerDown, selectionColor }: TextProps) => {
+interface NoteProps {
+	id: string
+	layer: NoteLayer
+	onPointerDown: (e: React.PointerEvent, id: string) => void
+	selectionColor?: string
+}
+const Note = ({ layer, onPointerDown, id, selectionColor }: NoteProps) => {
 	const { x, y, width, height, fill, value } = layer
 
 	const updateValue = useMutation(({ storage }, newValue: string) => {
@@ -45,10 +41,8 @@ const Text = ({ id, layer, onPointerDown, selectionColor }: TextProps) => {
 		const newValue = e.target.value
 
 		if (!newValue && inputValue === 'Text') {
-			// 当内容为空字符串且初始值也为 'Text' 时，保持空白（不触发更新）
 			return
 		}
-
 		setInputValue(newValue)
 		updateValue(e.target.value)
 	}
@@ -62,21 +56,23 @@ const Text = ({ id, layer, onPointerDown, selectionColor }: TextProps) => {
 			onPointerDown={(e) => onPointerDown(e, id)}
 			style={{
 				outline: selectionColor ? `1px solid ${selectionColor}` : 'none',
-			}}>
+				backgroundColor: fill ? colorToCss(fill) : '#000',
+			}}
+			className='shadow-md drop-shadow-xl'>
 			<ContentEditable
 				html={inputValue}
 				onChange={handleContentChange}
 				className={cn(
-					'h-full w-full flex items-center justify-center text-center drop-shadow-md outline-none',
+					'h-full w-full flex items-center justify-center text-center outline-none',
 					font.className
 				)}
 				style={{
 					fontSize: calculateFontSize(width, height),
-					color: fill ? colorToCss(fill) : '#000',
+					color: fill ? getContrastingTextColor(fill) : '#000',
 				}}
 			/>
 		</foreignObject>
 	)
 }
 
-export default Text
+export default Note

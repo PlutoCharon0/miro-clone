@@ -1,6 +1,6 @@
 import Hint from '@/components/hint'
-import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog'
 import { CreateOrganization } from '@clerk/nextjs'
+import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog'
 import { Plus } from 'lucide-react'
 
 // 创建组织按钮组件

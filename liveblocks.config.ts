@@ -5,17 +5,23 @@ import { Layer, Color } from './types/canvas'
 
 const client = createClient({
 	throttle: 16,
+	// 配置身份验证的"终结点"
 	authEndpoint: '/api/liveblocks-auth',
-	/* publicApiKey:
-		'pk_dev_WOFdmmy8rS1MUzaeHQAfoa1f4ClNnQ5Gr30cne7KJY44Gz2g5jAfqPQXxi_EtCwk', */
+
+	/*
+	用于创建客户端负责与后端进行通信
+	publicApiKey:
+		'pk_dev_WOFdmmy8rS1MUzaeHQAfoa1f4ClNnQ5Gr30cne7KJY44Gz2g5jAfqPQXxi_EtCwk' */
 })
 
 // Presence represents the properties that exist on every user in the Room
 // and that will automatically be kept in sync. Accessible through the
 // `user.presence` property. Must be JSON-serializable.
 type Presence = {
-	cursor: { x: number; y: number } | null,
-	selection: string[]
+	cursor: { x: number; y: number } | null // 定义光标位置
+	selection: string[] // 用于存储选中的图层id集合
+	pencilDraft: [x: number, y: number, pressure: number][] | null
+	penColor: Color | null
 	// ...
 }
 
@@ -23,9 +29,13 @@ type Presence = {
 // Room, even after all users leave. Fields under Storage typically are
 // LiveList, LiveMap, LiveObject instances, for which updates are
 // automatically persisted and synced to all connected clients.
+// 用于表示在实时协作应用中共享且持久化的文档结构。
+// 这个文档即使在所有用户离开后也会保留在房间（Room）中。
 type Storage = {
-	layers: LiveMap<string, LiveObject<Layer>>
-	layerIds: LiveList<string>
+	// 当对这些Layer对象进行更新时，变化会自动保存并同步到所有已连接的客户端。
+	layers: LiveMap<string, LiveObject<Layer>>, // 存储图层类映射 键为id，值为图层类型
+	// 每当添加、删除或重新排序图层时，该列表都会自动更新并在所有客户端之间保持同步。
+	layerIds: LiveList<string> // 存储图层id列表
 }
 
 // Optionally, UserMeta represents static/readonly metadata on each user, as

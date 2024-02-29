@@ -3,6 +3,7 @@ import { InfoSkeleton } from './info'
 import { ParticipantsSkeleton } from './participants'
 import { ToolbarSkeleton } from './toolbar'
 
+// 进入画板时的加载效果
 const Loading = () => {
 	return (
 		<main className='h-[100vh] w-full relative bg-neutral-100 touch-none flex items-center justify-center'>

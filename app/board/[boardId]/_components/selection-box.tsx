@@ -1,10 +1,9 @@
 'use client'
 // 控制图形缩放组件
-
+import { memo } from 'react'
+import { LayerType, Side, XYWH } from '@/types/canvas'
 import { useSelectionBounds } from '@/hooks/use-selection-bounds'
 import { useSelf, useStorage } from '@/liveblocks.config'
-import { LayerType, Side, XYWH } from '@/types/canvas'
-import { memo } from 'react'
 
 interface SelectionBoxProps {
 	onResizeHandlePointerDown: (corner: Side, initialBounds: XYWH) => void
@@ -13,10 +12,12 @@ const HANDLE_WIDTH = 8
 
 const SelectionBox = memo(
 	({ onResizeHandlePointerDown }: SelectionBoxProps) => {
+		// 判断是否仅有一个图层被选中
 		const soleLayerId = useSelf((me) =>
 			me.presence.selection.length === 1 ? me.presence.selection[0] : null
 		)
 
+		// 是否显示缩放控件 (仅当只有一个图层被选中且图层类型不是路径类型时显示)
 		const isShowingHandles = useStorage(
 			(root) =>
 				soleLayerId && root.layers.get(soleLayerId)?.type !== LayerType.Path
@@ -28,6 +29,7 @@ const SelectionBox = memo(
 
 		return (
 			<>
+				{/* 边框 */}
 				<rect
 					className='fill-transparent stroke-blue-500 stroke-1 pointer-events-none'
 					style={{
@@ -49,6 +51,8 @@ const SelectionBox = memo(
 								cursor: 'nwse-resize',
 								width: `${HANDLE_WIDTH}px`,
 								height: `${HANDLE_WIDTH}px`,
+								/* 为了将控制点的中心放置在边界框左上角的位置（bounds.x, bounds.y），
+								因此需要减去它自身宽度和高度的一半以使其左上角与边界框对齐。*/
 								transform: `
                 translate(
                   ${bounds.x - HANDLE_WIDTH / 2}px,

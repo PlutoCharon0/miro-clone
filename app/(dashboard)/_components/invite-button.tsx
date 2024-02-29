@@ -1,7 +1,6 @@
 import { Button } from '@/components/ui/button'
-import { Dialog } from '@/components/ui/dialog'
+import { Dialog,DialogContent, DialogTrigger } from '@/components/ui/dialog'
 import { OrganizationProfile } from '@clerk/nextjs'
-import { DialogContent, DialogTrigger } from '@/components/ui/dialog'
 import { Plus } from 'lucide-react'
 
 const InviteButton = () => {

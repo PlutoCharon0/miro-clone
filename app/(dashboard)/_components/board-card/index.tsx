@@ -1,17 +1,18 @@
 'use client'
 
 import { useAuth } from '@clerk/nextjs'
-import Overlay from './overlay'
-import Image from 'next/image'
-import Link from 'next/link'
 import { formatDistanceToNow } from 'date-fns'
-import Footer from './footer'
-import { Skeleton } from '@/components/ui/skeleton'
-import Actions from '@/components/actions'
-import { MoreHorizontal } from 'lucide-react'
 import { useApiMutation } from '@/hooks/use-api-mutation'
 import { api } from '@/convex/_generated/api'
 import { toast } from 'sonner'
+
+import Overlay from './overlay'
+import Image from 'next/image'
+import Link from 'next/link'
+import Footer from './footer'
+import Actions from '@/components/actions'
+import { Skeleton } from '@/components/ui/skeleton'
+import { MoreHorizontal } from 'lucide-react'
 
 interface BoardCardProps {
 	id: string
@@ -34,7 +35,9 @@ const BoardCard = ({
 	orgId,
 	isFavorite,
 }: BoardCardProps) => {
+	// 获取当前用户的id
 	const { userId } = useAuth()
+
 	// 配置用户名称 和 距今创建日期
 	const authoLabel = userId === authorId ? 'You' : authorName
 	const createdAtLabel = formatDistanceToNow(createdAt, {
@@ -55,6 +58,7 @@ const BoardCard = ({
 			onFavorite({ id, orgId }).catch(() => toast.error('Failed to favorite'))
 		}
 	}
+
 	return (
 		<Link href={`board/${id}`}>
 			<div className='group aspect-[100/127] border rounded-lg flex flex-col justify-between overflow-hidden'>

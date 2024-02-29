@@ -1,16 +1,19 @@
 'use client'
-import { Button } from '@/components/ui/button'
+
 import { api } from '@/convex/_generated/api'
 import { useApiMutation } from '@/hooks/use-api-mutation'
 import { useOrganization } from '@clerk/nextjs'
-import Image from 'next/image'
 import { useRouter } from 'next/navigation'
+
+import Image from 'next/image'
+import { Button } from '@/components/ui/button'
 import { toast } from 'sonner'
 
 const EmptyBoards = () => {
 	const router = useRouter()
 	const { organization } = useOrganization()
 	const { mutate, pending } = useApiMutation(api.board.create)
+	// 配置画板创建函数
 	const onClick = () => {
 		if (!organization) return
 
