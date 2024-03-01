@@ -1,15 +1,9 @@
-import { Kalam } from 'next/font/google'
 import ContentEditable, { ContentEditableEvent } from 'react-contenteditable'
 
 import { NoteLayer } from '@/types/canvas'
 import { cn, colorToCss, getContrastingTextColor } from '@/lib/utils'
 import { useMutation } from '@/liveblocks.config'
 import { useState } from 'react'
-
-const font = Kalam({
-	subsets: ['latin'],
-	weight: ['400'],
-})
 
 const calculateFontSize = (width: number, height: number) => {
 	const maxFontSize = 96
@@ -64,7 +58,7 @@ const Note = ({ layer, onPointerDown, id, selectionColor }: NoteProps) => {
 				onChange={handleContentChange}
 				className={cn(
 					'h-full w-full flex items-center justify-center text-center outline-none',
-					font.className
+					'font-Kalam'
 				)}
 				style={{
 					fontSize: calculateFontSize(width, height),

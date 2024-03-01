@@ -1,6 +1,23 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import url('../public/font.css');
+
+.font-Inter {
+	font-family: 'Inter', sans-serif;
+	font-style: normal;
+}
+.font-Kalam {
+	font-family: 'Kalam', sans-serif;
+	font-weight: 400;
+	font-style: normal;
+}
+
+.font-Poppins {
+	font-family: 'Poppins', sans-serif;
+	font-weight: 600;
+	font-style: normal;
+}
 
 html,
 body,

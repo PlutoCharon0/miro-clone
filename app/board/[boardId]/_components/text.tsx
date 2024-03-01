@@ -1,15 +1,9 @@
 import { cn, colorToCss } from '@/lib/utils'
 import { useMutation } from '@/liveblocks.config'
 import { TextLayer } from '@/types/canvas'
-import { Kalam } from 'next/font/google'
 import { useState } from 'react'
 
 import ContentEditable, { ContentEditableEvent } from 'react-contenteditable'
-
-const font = Kalam({
-	subsets: ['latin'],
-	weight: '400',
-})
 
 interface TextProps {
 	id: string
@@ -68,7 +62,7 @@ const Text = ({ id, layer, onPointerDown, selectionColor }: TextProps) => {
 				onChange={handleContentChange}
 				className={cn(
 					'h-full w-full flex items-center justify-center text-center drop-shadow-md outline-none',
-					font.className
+					'font-Kalam'
 				)}
 				style={{
 					fontSize: calculateFontSize(width, height),

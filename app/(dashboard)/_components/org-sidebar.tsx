@@ -1,7 +1,6 @@
 'use client'
 
 import { cn } from '@/lib/utils'
-import { Poppins } from 'next/font/google'
 import { useSearchParams } from 'next/navigation'
 
 import Image from 'next/image'
@@ -9,12 +8,6 @@ import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { OrganizationSwitcher } from '@clerk/nextjs'
 import { LayoutDashboard, Star } from 'lucide-react'
-
-
-const font = Poppins({
-	weight: '600',
-	subsets: ['latin'],
-})
 
 // 工作侧边栏组件
 const OrgSidebar = () => {
@@ -24,8 +17,8 @@ const OrgSidebar = () => {
 		<div className='hidden lg:flex flex-col space-y-6 w-[206px] pl-5 pt-5'>
 			<Link href='/'>
 				<div className='flex items-center gap-x-2'>
-					<Image alt='Logo' src='/logo.svg'width={60} height={60}  priority />
-					<span className={cn('font-semibold text-2xl', font.className)}>
+					<Image alt='Logo' src='/logo.svg' width={60} height={60} priority />
+					<span className={cn('font-semibold text-2xl', 'font-Poppins')}>
 						Clannad
 					</span>
 				</div>

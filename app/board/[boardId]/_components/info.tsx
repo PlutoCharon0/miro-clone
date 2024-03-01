@@ -4,7 +4,6 @@ import { cn } from '@/lib/utils'
 import { Id } from '@/convex/_generated/dataModel'
 import { api } from '@/convex/_generated/api'
 import { useQuery } from 'convex/react'
-import { Poppins } from 'next/font/google'
 import { useRenameModal } from '@/store/use-rename-moadl'
 
 import Image from 'next/image'
@@ -14,24 +13,17 @@ import Actions from '@/components/actions'
 import { Menu } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 
-
 interface InfoProps {
 	boardId: string
 }
-
-const font = Poppins({
-	subsets: ['latin'],
-	weight: '600',
-})
 
 const TabSeparator = () => {
 	return <div className='text-neutral-300 px-1.5'>|</div>
 }
 
 const Info = ({ boardId }: InfoProps) => {
-
 	const { onOpen } = useRenameModal()
-	
+
 	const data = useQuery(api.board.get, {
 		id: boardId as Id<'boards'>,
 	})
@@ -47,7 +39,7 @@ const Info = ({ boardId }: InfoProps) => {
 						<span
 							className={cn(
 								'font-semibold text-xl ml-2 text-black',
-								font.className
+								'font-Poppins'
 							)}>
 							Board
 						</span>

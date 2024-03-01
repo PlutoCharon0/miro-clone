@@ -1,15 +1,12 @@
 import './globals.css'
 
 import { Suspense } from 'react'
-import { Inter } from 'next/font/google'
 import type { Metadata } from 'next'
 
 import { ConvexClientProvider } from '@/providers/convex-client-provider'
 import { Toaster } from '@/components/ui/sonner'
 import ModalProvider from '@/providers/modal-provider'
 import Loading from '@/components/auth/loading'
-
-const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
 	title: 'Create Next App',
@@ -24,7 +21,7 @@ export default function RootLayout({
 	return (
 		<html lang='en'>
 			<link rel='icon' href='./favicon.ico' />
-			<body className={inter.className}>
+			<body className={'font-Inter '}>
 				<Suspense fallback={<Loading />}>
 					<ConvexClientProvider>
 						<Toaster />
