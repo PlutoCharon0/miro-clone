@@ -15,7 +15,7 @@ interface RoomProps {
 
 // 创建进行协作的独立虚拟空间
 const Room = ({ children, roomId, fallback }: RoomProps) => {
-	
+
 	return (
 		<RoomProvider
 			id={roomId}

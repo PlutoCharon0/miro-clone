@@ -30,7 +30,7 @@ export const get = query({
 			const ids = favoritedBoards.map((f) => f.boardId)
 			// 根据id获取指定数据
 			const boards = await getAllOrThrow(ctx.db, ids)
-			
+
 			return boards.map((board) => ({
 				...board,
 				isFavorite: true,

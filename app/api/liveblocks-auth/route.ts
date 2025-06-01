@@ -24,7 +24,7 @@ export async function POST(request: Request) {
 		return new Response('Unauthorization', { status: 403 })
 	}
 
-	/* 
+	/*
 	如果客户端需要访问某个特定的房间（例如实时聊天室）
 	那么请求体中会包含一个名为 room 的属性，并赋予该属性一个特定的值，表示访问该房间需要授权。
 	在这种情况下，服务器将会生成一个针对该房间的授权令牌，并将其返回给客户端。

@@ -59,7 +59,6 @@ const boundingBox = (layers: Layer[]): XYWH | null => {
  */
 export const useSelectionBounds = () => {
 	console.log('get minimum Bounds')
-	
 	// 获取当前用户选择的图层(id)集合
 	const selection = useSelf((me) => me.presence.selection)
 
